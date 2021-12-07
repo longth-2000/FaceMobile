@@ -2,8 +2,11 @@ package com.example.faceid;
 
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,25 +34,12 @@ public class Redirect extends Fragment{
         return binding.getRoot();
 
     }
-
-    /*@Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        Activity activity = getActivity();
-       database = new Database(activity,"User.sqlite", null, 1);
-        Cursor users = database.getInfor("SELECT * FROM users");
-        while(users.moveToNext()) {
-            String name = users.getString(1);
-            Toast.makeText(activity, name, Toast.LENGTH_SHORT).show();
-        }
-    }*/
-
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         binding.addFace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(Redirect.this)
-                        .navigate(R.id.action_to_Login);
+                openCamera();
             }
         });
         binding.skip.setOnClickListener(new View.OnClickListener() {
@@ -66,5 +56,15 @@ public class Redirect extends Fragment{
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+    public void openCamera(){
+        Activity activity = getActivity();
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        try {
+            startActivityForResult(intent , 999);
+        }catch (ActivityNotFoundException e) {
+            Toast.makeText(activity , "No camera software",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 }

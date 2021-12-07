@@ -1,8 +1,12 @@
 package com.example.faceid;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +20,9 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.faceid.databinding.LoginBinding;
 import com.example.faceid.databinding.LoginBinding;
+
+import java.io.File;
+import java.io.IOException;
 
 public class Login extends Fragment {
 
@@ -40,7 +47,7 @@ public class Login extends Fragment {
         binding.faceUnlock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               checkLogin();
+               openCamera();
             }
         });
         binding.register.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +60,7 @@ public class Login extends Fragment {
         binding.login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkLogin();
+                checkLogin("normal_login");
             }
         });
     }
@@ -67,7 +74,7 @@ public class Login extends Fragment {
         username = (EditText) getView().findViewById(R.id.username_login);
         password = (EditText) getView().findViewById(R.id.password_login);
     }
-    public void checkLogin() {
+    public void checkLogin(String function) {
         String usernameData = username.getText().toString().trim();
         String passwordData = password.getText().toString().trim();
         Activity activity = getActivity();
@@ -90,11 +97,24 @@ public class Login extends Fragment {
                     if(usernameData.equals(username) && passwordData.equals(password)) check = true;
                 }
                 if(check) {
+                    if(function.equals("add_face")){
+                        openCamera();
+                    }
                     NavHostFragment.findNavController(Login.this)
                             .navigate(R.id.action_to_Successfull);
                 }
                 else Toast.makeText(activity, "Tài khoản không tồn tại", Toast.LENGTH_SHORT).show();
             }
+        }
+    }
+    public void openCamera(){
+        Activity activity = getActivity();
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        try {
+            startActivityForResult(intent , 999);
+        }catch (ActivityNotFoundException e) {
+            Toast.makeText(activity , "No camera software",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 
