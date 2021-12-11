@@ -3,6 +3,7 @@ package com.example.faceid;
 import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,8 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.faceid.databinding.RegisterBinding;
 import com.example.faceid.databinding.RegisterBinding;
+
+import java.io.File;
 
 public class Register extends Fragment {
 
@@ -47,6 +50,7 @@ public class Register extends Fragment {
                 String usernameData = username.getText().toString().trim();
                 String passwordData = password.getText().toString().trim();
                 String retypePasswordData = retypePassword.getText().toString().trim();
+
                 if(TextUtils.isEmpty(usernameData)) {
                    Toast.makeText(activity, "Please enter username", Toast.LENGTH_SHORT).show();
                    return;
@@ -64,12 +68,11 @@ public class Register extends Fragment {
                             boolean check = false;
                             while(users.moveToNext()) {
                                 String username = users.getString(1);
-                                String password = users.getString(2);
-                                if(usernameData.equals(username) && passwordData.equals(password)) check = true;
+                                if(usernameData.equals(username)) check = true;
                             }
                             if(check) Toast.makeText(activity, "Tài khoản đã tồn tại", Toast.LENGTH_SHORT).show();
                             else {
-                                database.QueryData("INSERT INTO users VALUES (null, '" + usernameData + "', '" + passwordData + "')");
+                                database.QueryData("INSERT INTO users VALUES (null, '" + usernameData + "', '" + passwordData + "', null)");
                                 NavHostFragment.findNavController(Register.this)
                                         .navigate(R.id.action_to_Redirect);
                             }
@@ -91,5 +94,6 @@ public class Register extends Fragment {
         password = (EditText) getView().findViewById(R.id.password);
         retypePassword = (EditText) getView().findViewById(R.id.retype);
     }
+
 
 }

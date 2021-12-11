@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -12,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -97,7 +100,7 @@ public class Login extends Fragment {
                     if(usernameData.equals(username) && passwordData.equals(password)) check = true;
                 }
                 if(check) {
-                    if(function.equals("add_face")){
+                    if(function.equals("add_face")) {
                         openCamera();
                     }
                     NavHostFragment.findNavController(Login.this)
@@ -116,6 +119,14 @@ public class Login extends Fragment {
             Toast.makeText(activity , "No camera software",
                     Toast.LENGTH_SHORT).show();
         }
+    }
+    public String getImagePath(String username, Database database) {
+        Cursor users = database.getInfor("Select * from users where username = '" + username + "' ");
+        String imagePath = "";
+        if(users.moveToLast()) {
+            imagePath = users.getString(3);
+        }
+        return  imagePath;
     }
 
 }

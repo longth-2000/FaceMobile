@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="68dp"
-        android:layout_marginBottom="184dp"
+        android:layout_marginBottom="304dp"
         android:text="Face unlock"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -61,16 +61,25 @@
 
     <Button
         android:id="@+id/register"
-        android:layout_width="273dp"
-        android:layout_height="45dp"
+        android:layout_width="260dp"
+        android:layout_height="55dp"
         android:layout_marginStart="69dp"
         android:layout_marginEnd="69dp"
         android:layout_marginBottom="80dp"
         android:text="register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.468"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/faceUnlock" />
+        app:layout_constraintTop_toBottomOf="@id/faceUnlock"
+        app:layout_constraintVertical_bias="0.216" />
+
+    <ImageView
+        android:id="@+id/avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/___0_3_javascript_alert_success"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="519dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
