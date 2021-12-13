@@ -74,12 +74,4 @@
         app:layout_constraintTop_toBottomOf="@id/faceUnlock"
         app:layout_constraintVertical_bias="0.216" />
 
-    <ImageView
-        android:id="@+id/avatar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/___0_3_javascript_alert_success"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="519dp" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

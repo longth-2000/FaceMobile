@@ -58,8 +58,7 @@ public class Redirect extends Fragment{
                 Cursor users = database.getInfor("SELECT * FROM users ");
                 if(users.moveToLast()) {
                     String username = users.getString(1);
-                    String hashUsername = hashUsername(username);
-                    openCamera(activity, hashUsername);
+                    openCamera(activity,username);
                 }
             }
         });
