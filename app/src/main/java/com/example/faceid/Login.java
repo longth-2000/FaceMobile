@@ -190,6 +190,9 @@ public class Login extends Fragment {
     public void draftLogin(){
         System.out.print("Create draft login --window")
     }
+    public void virtualLogin(){
+        System.out.print("Create virtual login --window")
+    }
 }
 
 //link ảnh khi đăng nhập ở biến currentPhotoPATH
