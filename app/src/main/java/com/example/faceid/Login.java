@@ -188,7 +188,7 @@ public class Login extends Fragment {
         editor.commit();
     }
     public void draftLogin(){
-        System.out.print("Create draft login --linux")
+        System.out.print("Create draft login --window")
     }
 }
 
