@@ -94,15 +94,7 @@ public class Register extends Fragment {
         password = (EditText) getView().findViewById(R.id.password);
         retypePassword = (EditText) getView().findViewById(R.id.retype);
     }
-    public void draftRegister() {
-        System.out.print("Create draft register --window")
-    }
-    public void virtualRegister() {
-        System.out.print("Create virtual register --window")
-    }
-    public void ownRegister() {
-        System.out.print("Create own register --linux")
-    }
+   
 
 
 }

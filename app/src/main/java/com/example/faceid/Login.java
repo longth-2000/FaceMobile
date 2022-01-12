@@ -187,12 +187,7 @@ public class Login extends Fragment {
         editor.putString("password_key", password);
         editor.commit();
     }
-    public void draftLogin(){
-        System.out.print("Create draft login --window")
-    }
-    public void virtualLogin(){
-        System.out.print("Create virtual login --linux")
-    }
+    
 }
 
 //link ảnh khi đăng nhập ở biến currentPhotoPATH
