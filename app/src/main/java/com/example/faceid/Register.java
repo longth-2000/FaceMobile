@@ -94,6 +94,9 @@ public class Register extends Fragment {
         password = (EditText) getView().findViewById(R.id.password);
         retypePassword = (EditText) getView().findViewById(R.id.retype);
     }
+    public void draftRegister() {
+
+    }
    
 
 
